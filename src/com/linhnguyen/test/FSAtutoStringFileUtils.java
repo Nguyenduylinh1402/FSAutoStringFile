@@ -1,7 +1,5 @@
 package com.linhnguyen.test;
 
-import java.util.concurrent.TimeUnit;
-
 import android.os.RemoteException;
 
 import com.android.uiautomator.core.UiObject;
@@ -127,44 +125,40 @@ public class FSAtutoStringFileUtils {
 		sendStringFile.clickAndWaitForNewWindow();
 	}
 
-	public static void openNotification(final UiAutomatorTestCase test) {
-		test.getUiDevice().getInstance().openNotification();
-	}
+	public static void checkFileInAllFile(final UiAutomatorTestCase test,
+			final String fileName) {
 
-	public static void checkFileUploaded(final String file)
-			throws UiObjectNotFoundException {
-		UiScrollable appViews = new UiScrollable(
-				new UiSelector().scrollable(true));
-		appViews.setAsVerticalList();
+		UiScrollable scrollableAllFile = new UiScrollable(new UiSelector()
+				.className("android.widget.ListView").scrollable(true));
 
-		// int maxSearchSwipes = appViews.getMaxSearchSwipes();
-		UiSelector selectorNoti;
-		selectorNoti = new UiSelector().className(android.widget.TextView.class
+		UiSelector fileSelector;
+		fileSelector = new UiSelector().className(android.widget.TextView.class
 				.getName());
-		UiObject appToLaunch;
+		UiObject fileCatch;
 
 		for (int i = 0; i < 5; i++) {
-			Logger.d(i+":", "Checking...");
+
 			try {
-			    Thread.sleep(5000);                 //1000 milliseconds is one second.
-			} catch(InterruptedException ex) {
-			    Thread.currentThread().interrupt();
-			}
-			appToLaunch = appViews.getChildByText(selectorNoti, file);
-			try {
-				if (appToLaunch != null) {
-					Logger.d(i+":", "Checking...");
-					appToLaunch.clickAndWaitForNewWindow();
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				fileCatch = scrollableAllFile.getChildByText(fileSelector,
+						fileName, true);
+
+				if (fileCatch != null) {
+					fileCatch.clickAndWaitForNewWindow();
 					break;
 				}
 			} catch (UiObjectNotFoundException e) {
-				Logger.d(i+":", "Checking...");
-				
 				System.out.println("Did not find match for "
 						+ e.getLocalizedMessage());
+				//test.getUiDevice().pressBack();
 			}
 
 		}
+
 	}
 
 }

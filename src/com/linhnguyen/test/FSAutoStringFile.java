@@ -16,7 +16,11 @@ public class FSAutoStringFile extends UiAutomatorTestCase {
 	private final static String FOLDER_RESOURCE = "data";
 	private final static String EMAIL_ADRESS_ID = "Type Names or Email Addresses";
 	private final static String FILE_NAME_1 = "Chuyen Mua - Trung Quan Idol.mp3";
-	private final static String FILE_NAME_2= "Can do list_softskills.docx";
+	private final static String FILE_NAME_2 = "Can do list_softskills.docx";
+	private final static String FILE_NAME_3 = "PL_09_Presentation_skill - VN.pptx";
+	private final static String FILE_NAME_4 = "PL_14_Dealing with customer_Client relation.pptx";
+	private final static String FILE_NAME_5 = "timetable-PNV2M & 2T_week 36.xls";
+	private final static String FILE_NAME_6 = "PL_20_Task priority planning.pptx";
 	private final static String SEND_STRING_FILE = "Send";
 	private final static String FILE_UPLOADED = "File uploaded";
 
@@ -30,14 +34,17 @@ public class FSAutoStringFile extends UiAutomatorTestCase {
 		FSAtutoStringFileUtils.clickStringAfile(STRING_A_FILE);
 		FSAtutoStringFileUtils.clickFileManager(FILE_MANAGER);
 		FSAtutoStringFileUtils.findFolderResource(FOLDER_RESOURCE);
-		FSAtutoStringFileUtils.findFileResource(FILE_NAME_2);
+		FSAtutoStringFileUtils.findFileResource(FILE_NAME_1);
 		FSAtutoStringFileUtils.clickEnterEmail(EMAIL_ADRESS_ID, EMAIL_2);
 		FSAtutoStringFileUtils.clickSendStringFile(SEND_STRING_FILE);
 		Logger.d(FSAutoStringFile.class.getName(), "Open Notification Bar");
-		FSAtutoStringFileUtils.openNotification(this);
+		CheckNotification.openNotificationPanel();
 		Logger.d(FSAutoStringFile.class.getName(), "Check File Uploaded");
-		FSAtutoStringFileUtils.checkFileUploaded(FILE_UPLOADED);
+		CheckNotification.checkNotificationFileUploaded(this, FILE_UPLOADED);
 		Logger.d(FSAutoStringFile.class.getName(), "File Uploaded");
+		Logger.d(FSAutoStringFile.class.getName(), "Check File Upload in All File");
+		FSAtutoStringFileUtils.checkFileInAllFile(this, FILE_NAME_1);
+		Logger.d(FSAutoStringFile.class.getName(), "File All Ready in All File");
 
 	}
 }
