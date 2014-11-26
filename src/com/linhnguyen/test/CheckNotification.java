@@ -23,7 +23,7 @@ public class CheckNotification {
 
 		UiObject notiFileUploaded;
 
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 20; i++) {
 			try {
 				Thread.sleep(5000);
 				notiFileUploaded = notiPanel.getChildByText(notiSelector,
